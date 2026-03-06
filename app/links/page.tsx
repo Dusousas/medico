@@ -15,7 +15,10 @@ const LINKS: LinkItem[] = [
     href: "https://wa.me/5519991149528?text=Olá%2C%20vim%20pelo%20Instagram%20da%20Clínica%20IntegraMed%20e%20gostaria%20de%20mais%20informações%20sobre%20consultas%20e%20especialidades.",
     primary: true,
   },
-  { label: "Instagram", href: "https://www.instagram.com/clinica.integramed/" },
+  {
+    label: "Ver localização",
+    href: "https://www.google.com/maps/search/?api=1&query=Rua+Olavo+Bilac+911+Santa+Maria+da+Serra+SP",
+  },
   { label: "Visite nosso site", href: "https://clinicaintegramed.com.br" },
 ];
 
@@ -81,7 +84,6 @@ export default function LinksPageClinica() {
           "-=0.12",
         );
 
-      // Botão principal com “respiração” leve
       if (btnPrimaryRef.current) {
         gsap.to(btnPrimaryRef.current, {
           y: -2,
@@ -93,7 +95,6 @@ export default function LinksPageClinica() {
         });
       }
 
-      // Shine no título (infinito)
       if (titleRef.current) {
         gsap.to(titleRef.current, {
           backgroundPosition: "220% center",
@@ -105,7 +106,6 @@ export default function LinksPageClinica() {
         });
       }
 
-      // Hover GSAP nos botões
       const buttons = Array.from(
         (btnsWrapRef.current?.querySelectorAll("a") ??
           []) as NodeListOf<HTMLAnchorElement>,
@@ -140,19 +140,15 @@ export default function LinksPageClinica() {
 
   return (
     <section className="min-h-screen relative overflow-hidden px-6 py-2 flex items-center justify-center bg-[#070A0D]">
-      {/* FUNDO ANIMADO CLEAN (CSS) */}
       <div className="absolute inset-0">
-        {/* Aurora (faixa bem suave) */}
         <div className="aurora-sweep absolute inset-0 opacity-[0.22]" />
 
-        {/* Blobs com cores da logo */}
         <div className="blob blob-blue absolute -top-24 -left-24" />
         <div className="blob blob-green absolute top-1/2 -right-32 -translate-y-1/2" />
         <div className="blob blob-warm absolute -bottom-32 left-1/3" />
 
-        {/* Granulado sutil pra ficar “designer” */}
         <div className="noise absolute inset-0 opacity-[0.08] mix-blend-overlay" />
-        {/* Vinheta leve */}
+
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_55%)]" />
       </div>
 
@@ -166,7 +162,6 @@ export default function LinksPageClinica() {
             shadow-[0_22px_70px_rgba(0,0,0,0.55)]
           "
         >
-          {/* selo */}
           <div
             ref={badgeRef}
             className="
@@ -180,7 +175,6 @@ export default function LinksPageClinica() {
             Clínica Multidisciplinar
           </div>
 
-          {/* logo + título */}
           <div ref={logoWrapRef} className="flex flex-col items-center mt-5">
             <div
               className="
@@ -191,7 +185,6 @@ export default function LinksPageClinica() {
                 flex items-center justify-center
               "
             >
-              {/* Use essa mesma imagem que você mandou */}
               <img
                 src="/logo.png"
                 alt="Logo da clínica"
@@ -219,13 +212,11 @@ export default function LinksPageClinica() {
             </p>
           </div>
 
-          {/* mini infos */}
           <div className="grid grid-cols-2 gap-3 mt-7">
             <InfoPill title="Atendimento" value="Humanizado" />
             <InfoPill title="Equipe" value="Especialistas" />
           </div>
 
-          {/* links */}
           <div ref={btnsWrapRef} className="mt-7 flex flex-col gap-4">
             {LINKS.map((item) => (
               <LinkButton
@@ -236,7 +227,8 @@ export default function LinksPageClinica() {
                 primary={item.primary}
               />
             ))}
-            <p className=" uppercase text-center mt-4 text-white/55">
+
+            <p className="uppercase text-center mt-4 text-white/55">
               Rua Olavo Bilac, 911, Sala 2 - Centro, Santa Maria da Serra - SP
             </p>
           </div>
